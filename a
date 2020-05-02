@@ -1,0 +1,107 @@
+package it.tests;
+import java.io.*;
+import it.core.Anagram;
+import java.util.*;
+import it.excepts.WrongInputException;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+public class TestAnagram//main class which calls its subclasses or threads to perform requried operations
+{
+	private JFrame jfAnagram;
+	private JLabel jlblnoOfStrings;
+	private JLabel jlblString;
+	private JLabel jlblRate;
+	private JTextField jtfnoOfStrings;
+	private JTextField jtfString,jtfRate;
+	private JPanel jpInput;
+	private JPanel jpOutput;
+	private JPanel jpButton;
+	private JButton jbtnSubmit;
+	private JTextArea jtaOutputArea;
+	private JMenuBar jmbMenu;
+	private JMenu jmOpen;
+	private JMenu jmHelp;
+	private JMenuItem jmiSave;
+	private JMenuItem jmiExit;
+	private JMenuItem jmiAbout;
+	private JMenuItem jmiCredits;
+	private ArrayList<Anagram> al;
+	private int p,t,r;
+	private double CompoundIntrest;
+	private String[] s;
+	TestAnagram()
+	{
+		addItemsToFrame();
+		addListeners();
+	}
+	public void addItemsToFrame()
+	{
+		jfAnagram=new JFrame("BankLoanManagementSystem");
+		jpInput=new JPanel(new GridLayout(4,4));
+		jlblnoOfStrings=new JLabel("Enter the amount taken as loan :");
+		jtfnoOfStrings=new JTextField(10);
+		jlblString=new JLabel("Enter the time period in months ");
+		jtfString=new JTextField(20);
+		jlblRate=new JLabel("Enter rate of intrest");
+		jtfRate=new JTextField(20);
+		jpInput.add(jlblnoOfStrings);
+		jpInput.add(jtfnoOfStrings);
+		jpInput.add(jlblString);
+		jpInput.add(jtfString);
+		jpInput.add(jlblRate);
+		jpInput.add(jtfRate);
+		jfAnagram.add(jpInput);
+		jpButton=new JPanel(new GridLayout(1,1));
+		jbtnSubmit=new JButton("SUBMIT");
+		jpButton.add(jbtnSubmit);
+		jpOutput=new JPanel(new GridLayout(2,1));
+		jpOutput.add(new JLabel("Output"));
+		jtaOutputArea=new JTextArea(10,80);
+		jpOutput.add(jtaOutputArea);
+		jfAnagram.add(jpButton);
+		jfAnagram.add(jpOutput);
+		jfAnagram.setVisible(true);
+		jfAnagram.setSize(1000,1000);
+		jfAnagram.setLayout(new FlowLayout());
+	}
+	public void addListeners()
+	{
+		jbtnSubmit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+
+			{
+				try{
+					p=Integer.parseInt(jtfnoOfStrings.getText());
+					t=Integer.parseInt(jtfString.getText());
+					r=Integer.parseInt(jtfRate.getText());
+					//sIntrest=(p*t*r)/100.00;
+					CompoundIntrest=p*Math.pow(1.0+r/100.0, t)-p;
+					jtaOutputArea.setText("Total intrest to be paid = Rs "+CompoundIntrest+"\n");
+				}
+				catch(Exception ex)
+				{
+					JOptionPane.showMessageDialog(null, "INCORRECT INPUT");
+					jtfnoOfStrings.setText("");
+					jtfString.setText("");
+					jtfRate.setText("");
+				}
+			}
+		});
+		
+		
+		jfAnagram.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				//System.exit(0);
+				jfAnagram.dispose();
+			}
+		});
+	}
+	public static void main(String args[]) throws IOException//IOException can be thrown when we handel files
+    {
+        new TestAnagram();
+        System.out.println("EXIT");
+	}
+}
