@@ -19,7 +19,9 @@ public class TestAnagram//main class which calls its subclasses or threads to pe
 	private JPanel jpButton;
 	private JButton jbtnSubmit;
 	private JTextArea jtaOutputArea;
-	private JMenuBar jmbMenu;
+	private JMenuBa
+	A'
+	bk;xdjsaldn,csm;la
 	private JMenu jmOpen;
 	private JMenu jmHelp;
 	private JMenuItem jmiSave;
