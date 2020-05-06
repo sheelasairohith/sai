@@ -25,7 +25,7 @@ public class IntrestCalculator
 	private JMenuItem jmiCredits;
 	private ArrayList<Anagram> al;
 	private int p,t,r;
-	private double SIntrest;
+	private double CompoundIntrest;
 	private String[] s;
 	IntrestCalculator()
 	{
@@ -73,9 +73,9 @@ public class IntrestCalculator
 					p=Integer.parseInt(jtfnoOfStrings.getText());
 					t=Integer.parseInt(jtfString.getText());
 					r=Integer.parseInt(jtfRate.getText());
-					sIntrest=(p*t*r)/100.00;
-					//CompoundIntrest=p*Math.pow(1.0+r/100.0, t)-p;
-					jtaOutputArea.setText("Total intrest to be paid = Rs "+sIntrest+"\nIntrest per month = Rs "+sIntrest/t);
+					//sIntrest=(p*t*r)/100.00;
+					CompoundIntrest=p*Math.pow(1.0+r/100.0, t)-p;
+					jtaOutputArea.setText("Total intrest to be paid = Rs "+CompoundIntrest);
 				}
 				catch(Exception ex)
 				{
